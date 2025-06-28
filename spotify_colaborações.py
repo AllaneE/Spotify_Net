@@ -12,7 +12,7 @@ edges = pd.read_csv('edges.csv')
 
 artistas = nodes[nodes['genres'].str.contains('trap', case=False, na=False)]
 
-artistas = artistas.sort_values(by='followers', ascending=False).head(100)
+artistas = artistas.sort_values(by='popularity', ascending=False).head(250)
 id_artistas = artistas['spotify_id'].unique()
 
 edges = edges[edges['id_0'].isin(id_artistas) & edges['id_1'].isin(id_artistas)]
@@ -83,7 +83,7 @@ st.subheader("Grafo Interativo com Pyvis")
 net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black" )
 
 for node, data in G.nodes(data=True):
-    net.add_node(node, label=data['name'], color="#C6E5B1", title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size=data['popularity'] / 2)
+    net.add_node(node, label=data['name'], color="#C6E5B1", title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size= 10)
 
 for source, target, data in G.edges(data=True):
     net.add_edge(source, target)

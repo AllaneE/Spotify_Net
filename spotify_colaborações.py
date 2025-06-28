@@ -80,9 +80,8 @@ net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black"
 
 for node, data in G.nodes(data=True):
     net.add_node(node, label=data['name'],
-                 net.add_node(node, label=data['name'],
-                 title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}",
-                 color="red" if data['genre'] == 'pop' else "blue", size=data['popularity']/10)
+                title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}",
+                color="red" if data['genre'] == 'pop' else "blue", size=data['popularity']/10)
 
 for source, target, data in G.edges(data=True):
     net.add_edge(source, target)

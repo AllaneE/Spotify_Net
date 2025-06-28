@@ -12,7 +12,7 @@ edges = pd.read_csv('edges.csv')
 
 artistas = nodes[nodes['genres'].str.contains('rap|trap', case=False, na=False)]
 
-artistas = artistas.sort_values(by='popularity', ascending=False).head(250)
+artistas = artistas.sort_values(by='popularity', ascending=False)
 id_artistas = artistas['spotify_id'].unique()
 
 edges = edges[edges['id_0'].isin(id_artistas) & edges['id_1'].isin(id_artistas)]

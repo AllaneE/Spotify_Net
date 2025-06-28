@@ -40,14 +40,41 @@ st.markdown(f"**Assortatividade**: {assortabilidade:.2f}")
 st.markdown(f"**Coeficiente de Clustering**: {clustering:.2f}")
 st.markdown(f"**Número de Componentes Conectados**: {len(conectados)}")
 
-st.subheader("Centralidades")
+st.subheader("📊 Distribuição do Grau dos Nós")
+degree_sequence = [d for n, d in G.degree()]
+fig, ax = plt.subplots()
+ax.hist(degree_sequence, bins=range(1, max(degree_sequence)+2), color='skyblue', edgecolor='black')
+ax.set_title("Distribuição de Grau dos Nós")
+ax.set_xlabel("Grau")
+ax.set_ylabel("Quantidade de Nós")
+st.pyplot(fig)
+
+st.subheader("Ranking de Centralidades")
 degree_centrality = nx.degree_centrality(G)
 betweenness_centrality = nx.betweenness_centrality(G)
+closeness_centrality = nx.closeness_centrality(G)
+try:
+    eigenvector_centrality = nx.eigenvector_centrality(G, max_iter=1000)
+except nx.PowerIterationFailedConvergence:
+    eigenvector_centrality = {n: 0 for n in G.nodes}
 
-top_degree_centrality = sorted(degree_centrality.items(), key=lambda x: x[1], reverse=True)[:10]
-st.markdown("**Top 10 Artistas por Centralidade de Grau:**")
-for node, centrality in top_degree_centrality:
-    st.markdown(f"- {G.nodes[node]['name']}: {centrality:.2f}")
+centralidades = {
+    "Degree Centrality": degree_centrality,
+    "Betweenness Centrality": betweenness_centrality,
+    "Closeness Centrality": closeness_centrality,
+    "Eigenvector Centrality": eigenvector_centrality
+}
+
+# Interface para escolher métrica
+metrica = st.selectbox("Escolha a métrica de centralidade:", list(centralidades.keys()))
+top_k = st.slider("Número de artistas no ranking:", min_value=5, max_value=30, value=10)
+
+ranking = sorted(centralidades[metrica].items(), key=lambda x: x[1], reverse=True)[:top_k]
+
+st.markdown(f"**Top {top_k} Artistas por {metrica}:**")
+for i, (node, valor) in enumerate(ranking, 1):
+    nome = G.nodes[node]['name']
+    st.markdown(f"{i}. **{nome}** — {valor:.4f}")
 
 st.subheader("Grafo Interativo com Pyvis")
 

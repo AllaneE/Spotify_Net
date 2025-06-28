@@ -80,7 +80,7 @@ net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black"
 
 for node, data in G.nodes(data=True):
     net.add_node(node, label=data['name'],
-                title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size=data['popularity']/3)
+                title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size=data['popularity']/2)
 
 for source, target, data in G.edges(data=True):
     net.add_edge(source, target)
@@ -89,7 +89,7 @@ net.set_options("""
 var options = {
   "physics": {
     "barnesHut": {
-      "springLength": 400
+      "springLength": 200
     }
   }
 }

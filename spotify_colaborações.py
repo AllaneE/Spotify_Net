@@ -3,6 +3,7 @@ import pandas as pd
 import networkx as nx
 from pyvis.network import Network
 import tempfile
+import matplotlib.pyplot as plt
 import os
 import streamlit.components.v1 as components
 

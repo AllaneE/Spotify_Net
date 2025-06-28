@@ -85,6 +85,16 @@ for node, data in G.nodes(data=True):
 for source, target, data in G.edges(data=True):
     net.add_edge(source, target)
 
+net.set_options("""
+var options = {
+  "physics": {
+    "barnesHut": {
+      "springLength": 400
+    }
+  }
+}
+""")
+
 with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
     path = tmp_file.name
     net.save_graph(path)

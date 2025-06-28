@@ -10,19 +10,17 @@ import streamlit.components.v1 as components
 nodes = pd.read_csv('nodes.csv')
 edges = pd.read_csv('edges.csv')
 
-artistas_pop = nodes[nodes['genres'].str.contains('pop', case=False, na=False)]
+artistas = nodes.sort_values(by='popularity', ascending=False).head(500)
+id_artistas = artistas['spotify_id'].unique()
 
-artistas_pop = artistas_pop.sort_values(by='popularity', ascending=False).head(500)
-id_artistas_pop = artistas_pop['spotify_id'].unique()
-
-pop_edges = edges[edges['id_0'].isin(id_artistas_pop) & edges['id_1'].isin(id_artistas_pop)]
+edges = edges[edges['id_0'].isin(id_artistas) & edges['id_1'].isin(id_artistas)]
 
 G = nx.Graph()
 
-for _, row in artistas_pop.iterrows():
+for _, row in artistas.iterrows():
     G.add_node(row['spotify_id'], name=row['name'], genre=row['genres'], popularity=row['popularity'])
 
-for _, row in pop_edges.iterrows():
+for _, row in edges.iterrows():
     G.add_edge(row['id_0'], row['id_1'], weight=row.get('weight', 2))
 
 node_labels = nx.get_node_attributes(G, 'name')

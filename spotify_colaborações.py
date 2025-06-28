@@ -76,23 +76,13 @@ for i, (node, valor) in enumerate(ranking, 1):
 
 st.subheader("Grafo Interativo com Pyvis")
 
-net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black")
+net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black" )
 
 for node, data in G.nodes(data=True):
-    net.add_node(node, label=data['name'], title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size=data['popularity']/2)
+    net.add_node(node, label=data['name'], color="#C6E5B1", title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size=data['popularity'] / 2)
 
 for source, target, data in G.edges(data=True):
     net.add_edge(source, target)
-
-net.set_options("""
-var options = {
-  "physics": {
-    "barnesHut": {
-      "springLength": 700
-    }
-  }
-}
-""")
 
 with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as tmp_file:
     path = tmp_file.name

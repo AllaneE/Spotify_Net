@@ -6,16 +6,12 @@ import tempfile
 import matplotlib.pyplot as plt
 import os
 import streamlit.components.v1 as components
-import random
 
 nodes = pd.read_csv('nodes.csv')
 edges = pd.read_csv('edges.csv')
 
 artistas = nodes.sort_values(by='popularity', ascending=False).head(400)
 id_artistas = artistas['spotify_id'].unique()
-
-generos = artistas_pop['genre'].unique()
-cores_genero = {g: f"#{random.randint(0, 0xFFFFFF):06x}" for g in generos}
 
 edges = edges[edges['id_0'].isin(id_artistas) & edges['id_1'].isin(id_artistas)]
 
@@ -82,9 +78,8 @@ st.subheader("Grafo Interativo com Pyvis")
 
 net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black")
 
-genero = data['genre']
-    cor = cores_genero.get(genero, "#ffffff")  # branco como fallback
-    net.add_node(node, label=data['name'], title=f"<b>{data['name']}</b><br>Gênero: {genero}", size=15, color=cor)
+for node, data in G.nodes(data=True):
+    net.add_node(node, label=data['name'], title=f"<b>{data['name']}</b><br><br>Popularidade: {data['popularity']}", size=data['popularity']/2)
 
 for source, target, data in G.edges(data=True):
     net.add_edge(source, target)

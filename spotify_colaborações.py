@@ -76,7 +76,7 @@ for i, (node, valor) in enumerate(ranking, 1):
 
 st.subheader("Grafo Interativo com Pyvis")
 
-net = Network(height="750px", width="500%", bgcolor="#FFFFF", font_color="black")
+net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black")
 
 for node, data in G.nodes(data=True):
     net.add_node(node, label=data['name'],

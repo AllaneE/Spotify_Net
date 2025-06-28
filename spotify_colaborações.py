@@ -68,7 +68,7 @@ centralidades = {
 
 # Interface para escolher métrica
 metrica = st.selectbox("Escolha a métrica de centralidade:", list(centralidades.keys()))
-top_k = st.slider("Número de artistas no ranking:", min_value=5, max_value=30, value=10)
+top_k = st.slider("Número de artistas no ranking:", value=10)
 
 ranking = sorted(centralidades[metrica].items(), key=lambda x: x[1], reverse=True)[:top_k]
 

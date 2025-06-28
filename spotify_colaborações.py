@@ -11,8 +11,6 @@ nodes = pd.read_csv('nodes.csv')
 edges = pd.read_csv('edges.csv')
 
 artistas = nodes[nodes['genres'].str.contains('trap', case=False, na=False)]
-
-artistas = artistas.sort_values(by='popularity', ascending=False).head(100)
 id_artistas = artistas['spotify_id'].unique()
 
 

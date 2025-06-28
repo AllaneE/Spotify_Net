@@ -35,6 +35,8 @@ conectados = list(nx.connected_components(G))
 
 st.title("Grafo de Colaboração de Artistas do Gênero Pop")
 st.subheader("Informações da Rede")
+st.markdown(f"**Nós**: {G.number_of_nodes()}")
+st.markdown(f"**Arestas**: {G.number_of_edges()}")
 st.markdown(f"**Densidade**: {densidade:.2f}")
 st.markdown(f"**Assortatividade**: {assortabilidade:.2f}")
 st.markdown(f"**Coeficiente de Clustering**: {clustering:.2f}")

@@ -55,7 +55,7 @@ degree_centrality = nx.degree_centrality(G)
 betweenness_centrality = nx.betweenness_centrality(G)
 closeness_centrality = nx.closeness_centrality(G)
 try:
-    eigenvector_centrality = nx.eigenvector_centrality(G, max_iter=1000)
+    eigenvector_centrality = nx.eigenvector_centrality(G)
 except nx.PowerIterationFailedConvergence:
     eigenvector_centrality = {n: 0 for n in G.nodes}
 
@@ -68,8 +68,7 @@ centralidades = {
 
 # Interface para escolher métrica
 metrica = st.selectbox("Escolha a métrica de centralidade:", list(centralidades.keys()))
-top_k = st.slider("Número de artistas no ranking:", value=10)
-
+top_k = 10
 ranking = sorted(centralidades[metrica].items(), key=lambda x: x[1], reverse=True)[:top_k]
 
 st.markdown(f"**Top {top_k} Artistas por {metrica}:**")

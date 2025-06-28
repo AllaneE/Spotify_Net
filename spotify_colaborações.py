@@ -6,6 +6,7 @@ import tempfile
 import matplotlib.pyplot as plt
 import os
 import streamlit.components.v1 as components
+import random
 
 nodes = pd.read_csv('nodes.csv')
 edges = pd.read_csv('edges.csv')

@@ -22,7 +22,7 @@ for _, row in artistas_pop.iterrows():
     G.add_node(row['spotify_id'], name=row['name'], genre=row['genres'], popularity=row['popularity'])
 
 for _, row in pop_edges.iterrows():
-    G.add_edge(row['id_0'], row['id_1'], weight=row.get('weight', 1))
+    G.add_edge(row['id_0'], row['id_1'], weight=row.get('weight', 2))
 
 node_labels = nx.get_node_attributes(G, 'name')
 print('nós', G.number_of_nodes())

@@ -10,7 +10,7 @@ import streamlit.components.v1 as components
 nodes = pd.read_csv('nodes.csv')
 edges = pd.read_csv('edges.csv')
 
-artistas = nodes[nodes['genres'].str.contains('rap|trap|hip-hop', case=False, na=False)]
+artistas = nodes[nodes['genres'].str.contains('rap|trap', case=False, na=False)]
 
 artistas = artistas.sort_values(by='popularity', ascending=False).head(250)
 id_artistas = artistas['spotify_id'].unique()

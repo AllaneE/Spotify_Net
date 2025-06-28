@@ -12,7 +12,7 @@ edges = pd.read_csv('edges.csv')
 
 artistas_pop = nodes[nodes['genres'].str.contains('pop', case=False, na=False)]
 
-artistas_pop = artistas_pop.sort_values(by='popularity', ascending=False).head(100)
+artistas_pop = artistas_pop.sort_values(by='popularity', ascending=False).head(1000)
 id_artistas_pop = artistas_pop['spotify_id'].unique()
 
 pop_edges = edges[edges['id_0'].isin(id_artistas_pop) & edges['id_1'].isin(id_artistas_pop)]
@@ -41,7 +41,7 @@ st.markdown(f"**Assortatividade**: {assortabilidade:.2f}")
 st.markdown(f"**Coeficiente de Clustering**: {clustering:.2f}")
 st.markdown(f"**Número de Componentes Conectados**: {len(conectados)}")
 
-st.subheader("📊 Distribuição do Grau dos Nós")
+st.subheader("Distribuição do Grau dos Nós")
 degree_sequence = [d for n, d in G.degree()]
 fig, ax = plt.subplots()
 ax.hist(degree_sequence, bins=range(1, max(degree_sequence)+2), color='skyblue', edgecolor='black')

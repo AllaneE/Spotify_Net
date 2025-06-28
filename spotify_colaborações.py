@@ -10,7 +10,7 @@ import streamlit.components.v1 as components
 nodes = pd.read_csv('nodes.csv')
 edges = pd.read_csv('edges.csv')
 
-artistas = nodes.sort_values(by='popularity', ascending=False).head(200)
+artistas = nodes.sort_values(by='popularity', ascending=False).head(400)
 id_artistas = artistas['spotify_id'].unique()
 
 edges = edges[edges['id_0'].isin(id_artistas) & edges['id_1'].isin(id_artistas)]

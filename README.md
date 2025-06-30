@@ -9,8 +9,6 @@ A aplicação realiza uma análise exploratória de redes a partir de dois arqui
 - `nodes.csv`: contém os dados dos artistas (nome, ID do Spotify, popularidade, gêneros, etc.);
 - `edges.csv`: contém as colaborações entre artistas, representadas por pares de IDs (`id_0`, `id_1`).
 
----
-
 ## Funcionalidades
 
 - Filtragem de artistas dos gêneros **trap**, **rap** e **hip-hop**
@@ -29,8 +27,6 @@ A aplicação realiza uma análise exploratória de redes a partir de dois arqui
   - Closeness
   - Eigenvector
 - Visualização interativa com Pyvis diretamente no Streamlit
-
----
 
 ## Como Executar Localmente
 

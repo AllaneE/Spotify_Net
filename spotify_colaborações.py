@@ -34,7 +34,7 @@ assortabilidade = nx.degree_assortativity_coefficient(G)
 clustering = nx.average_clustering(G)
 conectados = list(nx.connected_components(G))
 
-st.title("Grafo de Colaboração de Artistas do Gênero Pop")
+st.title("Grafo de Colaboração de Artistas dos Gêneros Trap, Rap e Hip-Hop ")
 st.subheader("Informações da Rede")
 st.markdown(f"**Nós**: {G.number_of_nodes()}")
 st.markdown(f"**Arestas**: {G.number_of_edges()}")
@@ -78,7 +78,7 @@ for i, (node, valor) in enumerate(ranking, 1):
     nome = G.nodes[node]['name']
     st.markdown(f"{i}. **{nome}** — {valor:.4f}")
 
-st.subheader("Grafo Interativo com Pyvis")
+st.subheader("Grafo com Pyvis")
 
 net = Network(height="750px", width="100%", bgcolor="#FFFFF", font_color="black" )
 
